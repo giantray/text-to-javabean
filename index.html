@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+
+<div class="left">
+    <div class="input-tip">
+<!--         <div>
+            <span>源文本格式：
+            <select>
+                <option value="json">json</option>
+                <option value="sql">sql</option>
+            </select>
+        </div> -->
+
+        <span>在下方输入源文本:</span>
+    </div>
+    <div class="input-box">
+        <textarea id="input-textarea" ></textarea>
+    </div>
+</div>
+
+<div id="source-type" style="display: none">json</div>
+
+
+<div class="right">
+    <div class="result-oper">
+        <span id="result-tip"></span>
+    </div>
+    <div>
+        <textarea id="result">
+
+        </textarea>
+    </div>
+</div>
+
+</body>
+<div style="display: none" id="getset-templ">
+
+    public void setA(T a) {
+        this.a = a;
+    }
+    public T getA() {
+        return b;
+    }
+</div>
+
+<script src="to-bean.js"></script>
+</html>

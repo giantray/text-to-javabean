@@ -1,0 +1,25 @@
+
+.left{
+    float: left;
+    width: 48%;
+}
+
+.right{
+    float: right;
+    width: 48%;
+}
+
+.input-box textarea{
+	width: 100%;
+    min-height: 800px;
+}
+
+#result{
+	width: 100%;
+    min-height: 800px;
+}
+
+.result-oper{
+    height: 18px;
+    float: right;
+}
