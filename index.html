@@ -9,13 +9,6 @@
 
 <div class="left">
     <div class="input-tip">
-<!--         <div>
-            <span>源文本格式：
-            <select>
-                <option value="json">json</option>
-                <option value="sql">sql</option>
-            </select>
-        </div> -->
 
         <span>在下方输入源文本:</span>
     </div>
@@ -24,18 +17,22 @@
     </div>
 </div>
 
+
 <div id="source-type" style="display: none">json</div>
 
 
 <div class="right">
     <div class="result-oper">
-        <span id="result-tip"></span>
+        <span id="result-tip">显示结果：</span>
     </div>
     <div>
+
+
         <textarea id="result">
 
         </textarea>
     </div>
+
 </div>
 
 </body>
@@ -45,9 +42,24 @@
         this.a = a;
     }
     public T getA() {
-        return b;
+        return a;
     }
 </div>
 
+<div style="display: none" id="input-example">
+{
+    "id": 1,
+    "username": "john_smith",
+    "email": "john@example.com",
+    "name": "John Smith",
+    "state": "active",
+    "created_at": "2012-05-23T08:00:58Z",
+    "access_level": 40
+}
+</div>
+
+
+
+<script src="tool.js"></script>
 <script src="to-bean.js"></script>
 </html>
