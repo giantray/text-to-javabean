@@ -1,12 +1,86 @@
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
 
-.left{
+p{
+    margin: 0;
+}
+
+h1:first-child, h2:first-child {
+    margin-top: 0;
+}
+
+h1, h2 {
+    font-family: Arial, Helvetica, SimSun; "Gudea", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+}
+
+/* 清理浮动 */
+.clearfix:after {
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:" ";
+    clear:both;
+    height:0;
+}
+.clearfix {
+    zoom:1; /* for IE6 IE7 */
+}
+
+
+body {
+    padding: 25px 0;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #4A4A4A;
+    background-color: #cecece;
+    margin: 0;
+    line-height: 1.8;
+}
+
+header.section {
+    background: #fff;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.section {
+    border-radius: 8px;
+    padding: 50px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+    border-radius: 8px;
+    color: #4A4A4A;
+    border: 1px solid #979797;
+}
+
+.main{
+    background: #5D9CD4;
+    color: #fff;
+}
+
+.main h2 {
+    border-bottom: 1px solid #AECDE9;
+}
+
+
+.src-div{
     float: left;
     width: 48%;
 }
 
-.right{
+.dest-div{
     float: right;
     width: 48%;
+}
+
+.input-box{
+    margin-top: 40px;
 }
 
 .input-box textarea{
@@ -19,6 +93,33 @@
     min-height: 800px;
 }
 
-.result-oper{
-    height: 18px;
+.config{
+    margin-bottom: 20px;
+}
+
+button, .button {
+    background: #fff;
+    color: #5D9CD4;
+    border: 1px solid #979797;
+    border-radius: 10px;
+    padding: 5px 20px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+button:hover,.button:hover{
+    background: #3077B5;
+    border: 1px solid #3077B5;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.not-margin-bottom{
+    margin-bottom: 0px;
+}
+
+.right-button{
+    float: right;
+    margin: 10px 0px 3px 0px;
 }

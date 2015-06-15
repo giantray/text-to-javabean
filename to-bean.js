@@ -28,6 +28,7 @@ function main() {
             //把本程序定义的数据格式转换为文本
             var beanText = toBeanText(fields);
             document.getElementById('result').innerHTML = beanText;
+//            hljs.highlightBlock(document.getElementById('result'),null, true);
 
         }
     }
@@ -94,9 +95,21 @@ function toBeanText(beanFields) {
     if (shoudImportJackson) {
         importText += "import org.codehaus.jackson.annotate.JsonIgnoreProperties;\nimport org.codehaus.jackson.annotate.JsonProperty;"
     }
+    var packageName = document.getElementById('package-input').value;
+    if(packageName){
+        importText = "package "+ packageName + ";\n" + importText;
+    }
+
+    var className = document.getElementById("class-input").value;
+    if(!className){
+        className = "A";
+    }
+    else{
+        className = camelCaseWithFirstCharUpper(className);
+    }
 
     //把import,属性定义，setter，getter拼到一起，就是一个完整的java bean了
-    return importText + "\n\n   \npublic class A {\n\n" + fieldText + setterText + "\n}";
+    return importText + "\n\n   \npublic class "+className+" {\n\n" + fieldText + setterText + "\n}";
 }
 
 /**
@@ -167,6 +180,17 @@ function getTypeFromJsonVal(val,key) {
 }
 
 
+function initCopyBtn(id){
+
+    var client = new ZeroClipboard( document.getElementById(id) );
+
+    client.on( "copy", function (event) {
+        var clipboard = event.clipboardData;
+        var data = $("#copy-button").siblings("textarea").val();
+        clipboard.setData( "text/plain", data );
+        alert("拷贝成功")
+    });
+}
 
 var importMap = {
     'Date': 'java.util.Date',
@@ -182,19 +206,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     var area = document.getElementById('input-textarea');
     area.innerHTML = document.getElementById('input-example').innerHTML;
+
     main();
 
-    if (area.addEventListener) {
-        area.addEventListener('input', function() {
-            main();
-            //对大部分浏览器生效
-        }, false);
-    } else if (area.attachEvent) {
-        area.attachEvent('onpropertychange', function() {
-            // 对ie浏览器生效
-            main();
-        });
-    }
+    $("#input-textarea,.config input").live("change keyup paste",function(){
+        main();
+    });
+
+    initCopyBtn("copy-button");
+
+
+
 
 
 })

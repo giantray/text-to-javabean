@@ -4,39 +4,48 @@
     <meta charset="UTF-8">
     <title></title>
 </head>
+<link rel="stylesheet" href="lib/highlight/styles/vs.css">
 <link rel="stylesheet" href="style.css">
 <body>
 
-<div class="left">
-    <div class="input-tip">
+<div class="wrapper ">
+    <div id="source-type" style="display: none">json</div>
 
-        <span>在下方输入源文本:</span>
+    <header class="section">
+        <h1>json to java </h1>
+        <p>帮助您将json格式的数据，转换成javabean</p>
+        <p>用法：在下面右侧框中输入json，右侧会实时显示解析结果</p>
+    </header>
+
+    <div class="section main clearfix">
+        <h2>配置</h2>
+        <div class="config">
+            <p><label>package:<input id="package-input" value="com.duowan.tool"/></label></p>
+            <p><label>class:<input id="class-input" value="example"/></label></p>
+        </div>
+
+        <div class="src-div">
+            <h2 class="not-margin-bottom"><label>请输入json:</label></h2>
+            <div class="input-box">
+                <textarea id="input-textarea" ></textarea>
+            </div>
+        </div>
+
+
+        <div class="dest-div">
+            <h2 class="not-margin-bottom"><label>显示结果:</label></h2>
+            <div>
+                <button id="copy-button" class="right-button">复制代码</button>
+                <textarea id="result"></textarea>
+            </div>
+        </div>
+
+
     </div>
-    <div class="input-box">
-        <textarea id="input-textarea" ></textarea>
-    </div>
-</div>
 
 
-<div id="source-type" style="display: none">json</div>
 
-
-<div class="right">
-    <div class="result-oper">
-        <span id="result-tip">显示结果：</span>
-    </div>
-    <div>
-
-
-        <textarea id="result">
-
-        </textarea>
-    </div>
-
-</div>
-
-</body>
-<div style="display: none" id="getset-templ">
+    <div style="display: none" id="getset-templ">
 
     public void setA(T a) {
         this.a = a;
@@ -44,24 +53,27 @@
     public T getA() {
         return a;
     }
+    </div>
+
+    <div style="display: none" id="input-example">
+    {
+        "id": 1,
+        "username": "john_smith",
+        "email": "john@example.com",
+        "name": "John Smith",
+        "state": "active",
+        "created_at": "2012-05-23T08:00:58Z",
+        "access_level": 40,
+        "person":{"name":"test","age":1},
+        "about":["a","b"]
+    }
+    </div>
+
 </div>
-
-<div style="display: none" id="input-example">
-{
-    "id": 1,
-    "username": "john_smith",
-    "email": "john@example.com",
-    "name": "John Smith",
-    "state": "active",
-    "created_at": "2012-05-23T08:00:58Z",
-    "access_level": 40,
-    "person":{"name":"test","age":1},
-    "about":["a","b"]
-}
-</div>
-
-
-
+</body>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/highlight/highlight.pack.js"></script>
+<script src="lib/ZeroClipboard/ZeroClipboard.js"></script>
 <script src="tool.js"></script>
 <script src="to-bean.js"></script>
 </html>
