@@ -12,7 +12,6 @@ function main() {
         var textType = document.getElementById('source-type').innerHTML;
 
 
-
         if (text) {
             var beans;
 
