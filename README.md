@@ -2,7 +2,7 @@
 我们开发的java系统，经常需要调用其他系统的API。这些API的返回格式，往往都是json格式。这个小工具，可以帮助你把json格式的数据，转换成对应的javabean。以简化你手动拷贝粘贴json属性的工作。
 
 马上使用本项目，请访问
-http://small-tool.yygamedev.com/text-to-javabean/index.html
+http://jsontojava.sinaapp.com/
 
 
 ##使用说明
