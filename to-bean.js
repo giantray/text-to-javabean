@@ -17,23 +17,37 @@ function main() {
 
 
         if (text) {
-            var fields;
+            var beans;
 
             if (textType === 'json') {
-                fields = getBeanFieldFromJson(text);
+                beans = getBeanFieldFromJson(text);
             } else if (textType === 'sql') {
                 alert("还没实现");
             }
 
             //把本程序定义的数据格式转换为文本
-            var beanText = toBeanText(fields);
-            document.getElementById('result').innerHTML = beanText;
-//            hljs.highlightBlock(document.getElementById('result'),null, true);
+            $(".result-list").html("");
+            $.each(beans,function(i,v){
+                var beanText = toBeanText(v);
+                var textCss = "";
+                if(i != 0){
+                    textCss = "small-text";
+                }
+                if(i == 1){
+                    $(".result-list").append("<p class='more-class-tip'>以下为json中包含的自定义class：</p>")
+                }
 
+                var html = '<div><button class="right-button copy-button">复制代码</button>'+'<textarea class="result '+ textCss +'" >'+ beanText + '</textarea></div>';
+
+                $(".result-list").append(html);
+
+            })
+            initCopyBtn();
+            $(".error-tip").addClass("hide");
         }
     }
     catch(e){
-        document.getElementById('result').innerHTML = '无法解析，请确认格式正确'
+        $(".error-tip").html("无法解析，请确认格式正确").removeClass("hide");
     }
 
 }
@@ -41,10 +55,14 @@ function main() {
 
 /**
  * 把本程序定义的数据格式，转换为java bean文本
- * @param beanFields
+ * @param bean
  * @returns {string}
  */
-function toBeanText(beanFields) {
+function toBeanText(bean) {
+
+    var beanFields = bean.val;
+    var className = bean.name;
+
     var importText = "";
     var fieldText = "";
     var setterText = "";
@@ -100,14 +118,6 @@ function toBeanText(beanFields) {
         importText = "package "+ packageName + ";\n" + importText;
     }
 
-    var className = document.getElementById("class-input").value;
-    if(!className){
-        className = "A";
-    }
-    else{
-        className = camelCaseWithFirstCharUpper(className);
-    }
-
     //把import,属性定义，setter，getter拼到一起，就是一个完整的java bean了
     return importText + "\n\n   \npublic class "+className+" {\n\n" + fieldText + setterText + "\n}";
 }
@@ -133,11 +143,22 @@ function getBeanFieldFromJson(text) {
 
     //2.将json对象转换成bean类
     var bean = {};
+    var attrClassAry = [];
     for (key in jsonObject) {
         var val = jsonObject[key];
-        bean[key] = getTypeFromJsonVal(val,key);
+        bean[key] = getTypeFromJsonVal(val,key,attrClassAry);
     }
-    return bean;
+    var className = document.getElementById("class-input").value;
+    if(!className){
+        className = "A";
+    }
+    else{
+        className = camelCaseWithFirstCharUpper(className);
+    }
+    bean = {name:className,val:bean};
+
+
+    return $.merge( [bean], attrClassAry );
 }
 
 
@@ -147,7 +168,7 @@ function getBeanFieldFromJson(text) {
  * @param val
  * @returns {string}
  */
-function getTypeFromJsonVal(val,key) {
+function getTypeFromJsonVal(val,key,attrClassAry) {
 
     //去掉空格，以避免一些无谓的转换错误
     if(val && val.replace) {
@@ -171,25 +192,39 @@ function getTypeFromJsonVal(val,key) {
         return "String";
     } else {
         if (isArray(val)) {
-            var type  = getTypeFromJsonVal(val[0]);
+            var type  = getTypeFromJsonVal(val[0],attrClassAry);
             return "List<"+type +">";
         } else {
-            return camelCaseWithFirstCharUpper(key);
+                //会走到这里，说明属性值是个json，说明属性类型是个自定义类
+            var typeName = camelCaseWithFirstCharUpper(key);
+            var bean = {};
+            for (key in val) {
+                var fieldValue = val[key];
+                bean[key] = getTypeFromJsonVal(fieldValue,key,attrClassAry);
+            }
+            attrClassAry.push({name:typeName,val:bean});
+            return typeName;
+
         }
     }
 }
 
+/**
+ * 初始化拷贝按钮
+ * @param id
+ */
+function initCopyBtn(){
 
-function initCopyBtn(id){
+    $(".copy-button").each(function(i,v){
+        var client = new ZeroClipboard( v );
+        client.on( "copy", function (event) {
+            var clipboard = event.clipboardData;
+            var data = $(v).siblings("textarea").val();
+            clipboard.setData( "text/plain", data );
+            alert("拷贝成功")
+        });
+    })
 
-    var client = new ZeroClipboard( document.getElementById(id) );
-
-    client.on( "copy", function (event) {
-        var clipboard = event.clipboardData;
-        var data = $("#copy-button").siblings("textarea").val();
-        clipboard.setData( "text/plain", data );
-        alert("拷贝成功")
-    });
 }
 
 var importMap = {
@@ -213,7 +248,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         main();
     });
 
-    initCopyBtn("copy-button");
 
 
 

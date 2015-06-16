@@ -41,7 +41,7 @@ body {
     line-height: 1.8;
 }
 
-header.section {
+header.section,footer.section {
     background: #fff;
     padding-top: 25px;
     padding-bottom: 25px;
@@ -50,6 +50,17 @@ header.section {
     border-radius: 8px;
     padding: 50px;
     margin-bottom: 10px;
+}
+
+footer {
+    font-size: 13px;
+    text-align: center;
+}
+
+a {
+    color: #5D9CD4;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 textarea {
@@ -79,8 +90,13 @@ textarea {
     width: 48%;
 }
 
-.input-box{
-    margin-top: 40px;
+.hide{
+    visibility: hidden;
+}
+
+.error-tip{
+    height: 40px;
+    color: #ff6666;
 }
 
 .input-box textarea{
@@ -88,9 +104,13 @@ textarea {
     min-height: 800px;
 }
 
-#result{
+.result{
 	width: 100%;
     min-height: 800px;
+}
+
+.small-text{
+    min-height: 300px;
 }
 
 .config{
@@ -121,5 +141,12 @@ button:hover,.button:hover{
 
 .right-button{
     float: right;
-    margin: 10px 0px 3px 0px;
+    margin: 12px 0px 1px 0px;
+}
+.config input{
+    margin-left: 7px;
+}
+
+.more-class-tip{
+    margin-top: 5px;
 }
