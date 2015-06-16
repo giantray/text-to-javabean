@@ -1,12 +1,9 @@
-//todo:2、处理对象中有对象的情况
-//todo:3、一键复制
-//todo:4、能让用户自定义输入要使用的package
-
 
 /**
  * 主执行函数
  */
 function main() {
+
 
     try {
         //获取要解析的文本及文本类型
@@ -43,11 +40,18 @@ function main() {
 
             })
             initCopyBtn();
-            $(".error-tip").addClass("hide");
+            $(".error-tip").html("").addClass("hide");
         }
     }
-    catch(e){
-        $(".error-tip").html("无法解析，请确认格式正确").removeClass("hide");
+    catch(err){
+        var tip = "";
+        if(err.message.indexOf("解析出错")!=-1){
+            tip = err.message;
+        }
+        else{
+            tip = "无法解析，请确认格式正确";
+        }
+        $(".error-tip").html(tip).removeClass("hide");
     }
 
 }
@@ -133,6 +137,7 @@ function getBeanFieldFromJson(text) {
     var jsonObject = null;
     //把首尾空格去掉，那么如果第一和最后一个字符为[]，说明是json数组，而非对象
     text = trimStr(text);
+    jsonlint.parse(text);
     if (text[0] === "[" && text[text.length - 1] === "]") {
         text = '{ "list": ' + text + '}';
         //如果是数组，则默认去数组第一个元素
@@ -192,7 +197,7 @@ function getTypeFromJsonVal(val,key,attrClassAry) {
         return "String";
     } else {
         if (isArray(val)) {
-            var type  = getTypeFromJsonVal(val[0],attrClassAry);
+            var type  = getTypeFromJsonVal(val[0],key,attrClassAry);
             return "List<"+type +">";
         } else {
                 //会走到这里，说明属性值是个json，说明属性类型是个自定义类

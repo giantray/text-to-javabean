@@ -95,8 +95,14 @@ textarea {
 }
 
 .error-tip{
-    height: 40px;
-    color: #ff6666;
+    background: #FBE3E4;
+    color: #D12F19;
+    border-color: #FBC2C4;
+    margin: 12px 0px;
+    border: 2px solid #ddd;
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 8px;
 }
 
 .input-box textarea{
