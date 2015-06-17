@@ -53,14 +53,14 @@ public class Example {
 }
 ```
 
-#### 自动将小写命名的属性，转换为驼峰命名
+#### **自动将小写命名的属性，转换为驼峰命名**
 create_at的属性名，将会被转成createdAt,且带上注解
 ```java
 @JsonProperty("created_at")
 private Date createdAt;
 ```
 
-#### 如果json为数组，会自动识别数组中的第一个值
+#### **如果json为数组，会自动识别数组中的第一个值**
 如下面的例子，会判断到该json为数组，然后通过数组的第一个值来解析得到javabean
 ```json
 [
@@ -78,10 +78,10 @@ private Date createdAt;
 ]
 ```
 
-#### 支持一键复制到剪贴板
+#### **支持一键复制到剪贴板**
 ![上传图片](http://image.game.yy.com/o/cloudapp/25586759/170x170/201506-269c004a_8006_406b_b9a5_d10d8a4d0fe7.png)
 
-#### 能够自动识别属性值为自定义类的情况
+#### **能够自动识别属性值为自定义类的情况**
 值如下图中的images属性，它的值不是基本类型(string,int等)，而是自定义的数据结构
 ```json
 {
