@@ -1,11 +1,15 @@
 ##功能介绍
 我们开发的java系统，经常需要调用其他系统的API。这些API的返回格式，往往都是json格式。这个小工具，可以帮助你把json格式的数据，转换成对应的javabean。以简化你手动拷贝粘贴json属性的工作。
 
-马上使用本项目，请访问
-http://jsontojava.sinaapp.com/
+##哪些人会收益
+如果你需要调用第三方API,但面临以下情况：
+1、API未提供JAVA SDK，映射到java的响应格式，要自己写
+2、API提供了SDK，但SDK略重，不想折腾
 
 
 ##使用说明
+马上使用本项目，请访问
+http://jsontojava.sinaapp.com/
 访问上面的网址，或下载git中的代码，打开index.html。页面如下图所示。默认会展示一个例子。
 
 1、你可以在左边的输入框粘贴json数据
