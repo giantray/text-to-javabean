@@ -81,6 +81,9 @@ private Date createdAt;
 #### **支持一键复制到剪贴板**
 ![上传图片](http://image.game.yy.com/o/cloudapp/25586759/170x170/201506-269c004a_8006_406b_b9a5_d10d8a4d0fe7.png)
 
+#### **当json解析出错时，显示出错的行**
+![上传图片](http://image.game.yy.com/o/cloudapp/25586759/170x170/201506-7a737f94_da89_45be_928c_57ffb6c4426c.png)
+
 #### **能够自动识别属性值为自定义类的情况**
 值如下图中的images属性，它的值不是基本类型(string,int等)，而是自定义的数据结构
 ```json
