@@ -18,7 +18,7 @@ http://jsontojava.sinaapp.com/
 ![上传图片](http://image.game.yy.com/o/cloudapp/25586759/170x170/201506-534396a6_9bf5_4939_88a0_9c490aea1fb8.png)
 
 ##支持特性
-#### 自动识别属性值，目前可以识别int，double,string,date,boolean，数组等
+#### **自动识别属性值，目前可以识别int，double,string,date,boolean，数组等**
 例如：
 1、json格式```"created_at": "2012-05-23T08:00:58Z"```会被识别为Date类型，并生成属性```private Date createdAt```
 2、识别数组
