@@ -30,10 +30,10 @@ function main() {
                     textCss = "small-text";
                 }
                 if(i == 1){
-                    $(".result-list").append("<p class='more-class-tip'>以下为json中包含的自定义class：</p>")
+                    $(".result-list").append("<p class='more-class-tip'>below is the more class contain in the basic class</p>")
                 }
 
-                var html = '<div><button class="right-button copy-button">复制代码</button>'+'<textarea class="result '+ textCss +'" >'+ beanText + '</textarea></div>';
+                var html = '<div><button class="right-button copy-button">copy code</button>'+'<textarea class="result '+ textCss +'" >'+ beanText + '</textarea></div>';
 
                 $(".result-list").append(html);
 
@@ -44,11 +44,11 @@ function main() {
     }
     catch(err){
         var tip = "";
-        if(err.message.indexOf("解析出错")!=-1){
+        if(err.message.indexOf("Parse error on line")!=-1){
             tip = err.message;
         }
         else{
-            tip = "无法解析，请确认格式正确";
+            tip = "parse error,makesure the json is right";
         }
         $(".error-tip").html(tip).removeClass("hide");
     }
@@ -228,7 +228,7 @@ function initCopyBtn(){
             var clipboard = event.clipboardData;
             var data = $(v).siblings("textarea").val();
             clipboard.setData( "text/plain", data );
-            alert("拷贝成功")
+            alert("copy success")
         });
     })
 
