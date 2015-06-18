@@ -134,8 +134,11 @@ function getBeanFieldFromJson(text) {
 
     //1.先将文本转换成json实体
     var jsonObject = null;
+
+    //一些容错配置
     //把首尾空格去掉，那么如果第一和最后一个字符为[]，说明是json数组，而非对象
     text = trimStr(text);
+
     jsonlint.parse(text);
     if (text[0] === "[" && text[text.length - 1] === "]") {
         text = '{ "list": ' + text + '}';
@@ -241,8 +244,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     //当输入框有变化时，重新显示解析结果
 
-
-
     var area = document.getElementById('input-textarea');
     area.innerHTML = document.getElementById('input-example').innerHTML;
 
@@ -251,11 +252,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $("#input-textarea,.config input").live("change keyup paste",function(){
         main();
     });
-
-
-
-
-
 
 })
 
